@@ -1,11 +1,12 @@
 # =====RAW SCHEMA========
 
-raw = """"
+raw = """
 CREATE SCHEMA IF NOT EXISTS {};
 """
 
+
 # ======DEV SCHEMA =========
-dev = """"
+dev = """
 CREATE SCHEMA IF NOT EXISTS {};
 """
 
@@ -22,7 +23,8 @@ id INTEGER PRIMARY KEY NOT NULL,
 first_name VARCHAR NOT NULL,
 last_name VARCHAR NOT NULL,
 email VARCHAR NOT NULL,
-registered_at DATE,
+registered_at TIMESTAMP,
+converted_date DATE,
 registered_year INTEGER,
 registered_month INTEGER,
 registered_day INTEGER,
@@ -33,25 +35,26 @@ registered_hour INTEGER
 
 exchange_rates = """
 CREATE TABLE IF NOT EXISTS {}.exchange_rates(
-date DATE NOT NULL,
-bank_id VARCHAR NOT NULL,
+date DATE,
+bank_id VARCHAR,
 rate NUMERIC
 );
 """
 items = """
 CREATE TABLE IF NOT EXISTS {}.items(
-id INTEGER PRIMARY KEY NOT NULL,
-name VARCHAR NOT NULL,
+id INTEGER NOT NULL,
+name VARCHAR,
 selling_price NUMERIC,
 cost_price NUMERIC
 );
 """
 transactions = """
 CREATE TABLE IF NOT EXISTS {}.transactions(
-id INTEGER PRIMARY KEY NOT NULL,
+id BIGINT PRIMARY KEY NOT NULL,
 customer_id INTEGER NOT NULL,
 item_id INTEGER NOT NULL,
 bank_id VARCHAR NOT NULL,
+qty INTEGER,
 transaction_date DATE,
 transaction_year INTEGER,
 transaction_month INTEGER,
