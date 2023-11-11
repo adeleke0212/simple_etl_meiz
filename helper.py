@@ -31,6 +31,8 @@ DWH_USER = config['dwh_conn']['dwh_username']
 DWH_DB = config['dwh_conn']['dwh_database']
 DWH_PASSWORD = config['dwh_conn']['dwh_password']
 ARN_ROLE = config['dwh_conn']['arn_role']
+
+# Schema credentials
 RAW_SCHEMA = config['dwh_conn']['raw_schema']
 DEV_SCHEMA = config['dwh_conn']['dev_schema']
 
