@@ -1,2 +1,2 @@
-db_tables = ['banks', 'customers', 'exchange_rates',
+db_tables = ['banks', 'exchange_rates', 'customers',
              'items', 'transactions']
