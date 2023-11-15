@@ -14,23 +14,16 @@ def extract_transform_save_to_lake():
     for table in db_tables:
         if table == 'customers':
             df = pd.read_sql_query(select_query.format(table), con=conn)
-            # format below makes pd datetime compatible with postgres DATE
-            # Not fixed yet
+
             df['converted_date'] = df['registered_at'].astype(
                 str).apply(lambda x: x[:10])
             df['converted_date'] = pd.to_datetime(df['converted_date'])
-            # df['registered_at'] = df['registered_at'].apply(
-            #     lambda x: pd.to_datetime(x))
-            # df['registered_at'] = pd.to_datetime(
-            #     df['registered_at'])
+
             df['registered_year'] = pd.DatetimeIndex(df['registered_at']).year
             df['registered_month'] = pd.DatetimeIndex(
                 df['registered_at']).month
             df['registered_day'] = pd.DatetimeIndex(df['registered_at']).day
-            # df['registered_year'] = pd.DatetimeIndex(df['registered_at']).day
-            # df['registered_month'] = df['registered_at'].dt.month
-            # df['registered_day'] = df['registered_at'].dt.day
-            # df['registered_hour'] = df['registered_at'].dt.hour
+
             df['registered_hour'] = df['registered_at'].astype(
                 str).apply(lambda x: x[11:13]).astype(int)
             df['email'] = df['email'].fillna('Not provided')
